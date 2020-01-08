@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>条件渲染</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-if是通过直接移除标签来控制显示 -->
+        <p v-if="ok">成功了</p>
+        <p v-else>失败了</p>
+        <!-- v-show是通过style：display来控制显示 -->
+        <p v-show="ok">表白成功</p>
+        <p v-show="!ok">表白失败</p>
+        <button type="button" name="button" @click="ok = !ok">更新</button>
+    </div>
+    <script src="../js/vue.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        const vm = new Vue({ // 配置对象
+            el: '#app', // element:选择器
+            data: {     // model(数据)
+                ok: true
+            }
+        })
+    </script>
+</body>
+</html>

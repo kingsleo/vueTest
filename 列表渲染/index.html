@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表渲染</title>
+</head>
+<body>
+    <div id="app">
+      <h2>循环遍历v-for 数组</h2>
+      <ul>
+        <li v-for="(p, index) in persons" :key="index">
+          {{index}}--{{p.name}}--{{p.age}}
+          -- <button @click="deleteP(index)">删除</button>
+          -- <button @click="updateP(index, {name: 'haha', age: 30})">更新</button>
+        </li>
+      </ul>
+
+    </div>
+    <script src="../js/vue.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        const vm = new Vue({ // 配置对象
+            el: '#app', // element:选择器
+            data: {     // model(数据)
+                persons: [
+                  {
+                    name: "kingsleo",
+                    age: 18
+                  },
+                  {
+                    name: "kingsleo1",
+                    age: 19
+                  },
+                  {
+                    name: "kingsleo2",
+                    age:20
+                  },
+                  {
+                    name: "kingsleo3",
+                    age:21
+                  },
+                  {
+                    name: "kingsleo4",
+                    age: 22
+                  }
+                ]
+            },
+            methods: {
+              deleteP(index) {
+                this.persons.splice(index, 1)
+              },
+              updateP(index, newP) {
+                this.persons.splice(index, 1, newP)
+              }
+            }
+        })
+    </script>
+</body>
+</html>
