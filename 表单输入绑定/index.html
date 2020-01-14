@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单输入绑定</title>
+</head>
+<body>
+    <div id="app">
+        <form class="" action="/xxx" method="post" @submit.prevent="handleSubmit()">
+          <span>用户名：</span>
+          <input type="text" name="username" value="" v-model="username"><br>
+          <span>密码：</span>
+          <input type="text" name="pwd" value="" v-model="pwd"><br>
+          <span>性别：</span>
+          <input type="radio" name="female" value="女" v-model="sex">
+          <label for="female">女</label>
+          <input type="radio" name="male" value="男" v-model="sex">
+          <label for="male">男</label><br>
+          <span>爱好：</span>
+          <input type="checkbox" name="" value="basket" id="basket" v-model="likes">
+          <label for="basket">篮球</label>
+          <input type="checkbox" name="" value="foot" id="foot" v-model="likes">
+          <label for="foot">足球</label>
+          <input type="checkbox" name="" value="pingong" id="pingpong" v-model="likes">
+          <label for="pingong">乒乓</label><br>
+          <span>城市：</span>
+          <select class="" name="" v-model="cityId">
+            <option value="">未选择</option>
+            <option :value="city.id" v-for="(city, index) in allCitys">{{city.name}}</option>
+          </select><br>
+          <span>介绍：</span>
+          <textarea name="memo" rows="8" cols="80" v-model="memo"></textarea><br>
+          <input type="submit" name="" value="注册">
+        </form>
+    </div>
+    <script src="../js/vue.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        const vm = new Vue({ // 配置对象
+            el: '#app', // element:选择器
+            data: {     // model(数据)
+              username: '',
+              pwd: '',
+              sex: '女',
+              likes: ['basket'],
+              allCitys: [{id: 1, name: 'BJ'}, {id: 2, name: 'SH'}, {id: 3, name: 'FJ'}],
+              cityId: 3,
+              memo: ''
+            },
+            methods: {
+              handleSubmit() {
+                console.log(this.username + " " + this.pwd + " " + this.sex + " " + this.likes + " " + this.cityId + " " + this.memo)
+              }
+            }
+        })
+    </script>
+</body>
+</html>
