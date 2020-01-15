@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生命周期</title>
+</head>
+<body>
+    <div id="app">
+        <button type="button" name="button" @click="destroyVM">destory VM</button>
+        <p v-show="isShow">kingsleo</p>
+    </div>
+    <script src="../js/vue.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        const vm = new Vue({ // 配置对象
+            el: '#app', // element:选择器
+            data: {     // model(数据)
+                isShow: true
+            },
+
+            // 1、初始化
+            beforeCreate() {
+              console.log("beforeCreate")
+            },
+
+            created() {
+              console.log("created")
+            },
+
+            beforeMount() {
+              console.log("beforeMount");
+            },
+
+            mounted() { // 初始化显示之后立即调用
+              this.intervalId = setInterval(() => {
+                console.log("mounted")
+                this.isShow = !this.isShow
+              }, 1000)
+            },
+
+            // 2、更新
+            beforeUpdate() {
+              console.log("beforeUpdate")
+            },
+
+            updated() {
+              console.log("updated");
+            },
+
+            // 3、销毁
+            beforeDestroy() {
+              console.log("beforeDestroy");
+              clearInterval(this.intervalId)
+            },
+
+            destroyed() {
+              console.log("destroyed");
+            },
+
+            methods: {
+              destroyVM() {
+                this.$destroy()
+              }
+            }
+        })
+    </script>
+</body>
+</html>

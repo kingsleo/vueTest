@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过渡动画</title>
+    <style>
+      /*显示的过渡效果*/
+      .xxx-enter-active, .xxx-leave-active {
+        transition: opacity 1s;
+      }
+
+      /*隐藏的过渡效果*/
+      .xxx-enter, .xxx-leave-to {
+        opacity: 0;
+      }
+
+      /*显示的过渡效果*/
+      .move-enter-active {
+        transition: all 1s;
+      }
+
+      /*隐藏的过渡效果*/
+      .move-leave-active {
+        transition: all 3s;
+      }
+
+      /*隐藏时的样式*/
+      .move-enter, .move-leave-to {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+    </style>
+</head>
+<body>
+    <div id="app1">
+        <button type="button" name="button" @click="isShow=!isShow" >button</button>
+        <transition name="xxx">
+          <p v-show="isShow">kingsleo</p>
+        </transition>
+    </div>
+
+    <div id="app2">
+        <button type="button" name="button" @click="isShow=!isShow" >button</button>
+        <transition name="move">
+          <p v-show="isShow">kingsleo</p>
+        </transition>
+    </div>
+
+    <script src="../js/vue.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        const vm1 = new Vue({ // 配置对象
+            el: '#app1', // element:选择器
+            data() {
+              return {
+                isShow: true
+              }
+            }
+        })
+
+        const vm2 = new Vue({ // 配置对象
+            el: '#app2', // element:选择器
+            data() {
+              return {
+                isShow: true
+              }
+            }
+        })
+    </script>
+</body>
+</html>
